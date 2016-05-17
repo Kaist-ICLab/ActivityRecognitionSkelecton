@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/ohtangza/Library/Android/sdk/extras/android/m2repository/com/android/support/support-v4/18.0.0/support-v4-18.0.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
+        <dex dex="/Users/ohtangza/Downloads/w12_ActivityRecognitionSkelecton2015_FULL/app/build/intermediates/pre-dexed/debug/support-v4-18.0.0-f79ff88bbfbfee1b37b841f7dfbc7b827cd855d0.jar" />
+    </item>
+    <item
+        jar="/Users/ohtangza/Downloads/w12_ActivityRecognitionSkelecton2015_FULL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/18.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="8f11f56e350eacabf2273f646d981356eea0ed77">
+        <dex dex="/Users/ohtangza/Downloads/w12_ActivityRecognitionSkelecton2015_FULL/app/build/intermediates/pre-dexed/debug/classes-6b55eedb03eacd458c84ce1cd1c9a84de971ba66.jar" />
+    </item>
+    <item
+        jar="/Users/ohtangza/Downloads/w12_ActivityRecognitionSkelecton2015_FULL/app/libs/weka.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="65f4def5e70d6fe34fbc26d1901df050785ba6bf">
+        <dex dex="/Users/ohtangza/Downloads/w12_ActivityRecognitionSkelecton2015_FULL/app/build/intermediates/pre-dexed/debug/weka-ac4d586acdc5d44d539ab86d37cae6a05d0f0fcf.jar" />
+    </item>
+    <item
+        jar="/Users/ohtangza/Downloads/w12_ActivityRecognitionSkelecton2015_FULL/app/libs/weka.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="65f4def5e70d6fe34fbc26d1901df050785ba6bf">
+        <dex dex="/Users/ohtangza/Downloads/w12_ActivityRecognitionSkelecton2015_FULL/app/build/intermediates/pre-dexed/debug/weka-ac4d586acdc5d44d539ab86d37cae6a05d0f0fcf.jar" />
+    </item>
+    <item
+        jar="/Users/ohtangza/Downloads/w12_ActivityRecognitionSkelecton2015_FULL/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/18.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="8f11f56e350eacabf2273f646d981356eea0ed77">
+        <dex dex="/Users/ohtangza/Downloads/w12_ActivityRecognitionSkelecton2015_FULL/app/build/intermediates/pre-dexed/debug/classes-6b55eedb03eacd458c84ce1cd1c9a84de971ba66.jar" />
+    </item>
+    <item
+        jar="/Users/ohtangza/Library/Android/sdk/extras/android/m2repository/com/android/support/support-v4/18.0.0/support-v4-18.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
+        <dex dex="/Users/ohtangza/Downloads/w12_ActivityRecognitionSkelecton2015_FULL/app/build/intermediates/pre-dexed/debug/support-v4-18.0.0-f79ff88bbfbfee1b37b841f7dfbc7b827cd855d0.jar" />
+    </item>
+
+</items>

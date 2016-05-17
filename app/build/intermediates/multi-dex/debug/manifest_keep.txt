@@ -1,0 +1,8 @@
+-keep class android.test.InstrumentationTestRunner { <init>(); }
+-keep class kr.ac.kaist.ic.arSkelecton.MainActivity { <init>(); }
+-keep public class * extends android.app.backup.BackupAgent {
+    <init>();
+}
+-keep public class * extends java.lang.annotation.Annotation {
+    *;
+}

@@ -1,0 +1,30 @@
+-injars 'D:\kse624-ActivityRecognitionSkelecton-full\w12_ActivityRecognitionSkelecton2015_FULL\app\build\intermediates\transforms\jarMerging\debug\jars\1\1f\combined.jar'
+-outjars 'D:\kse624-ActivityRecognitionSkelecton-full\w12_ActivityRecognitionSkelecton2015_FULL\app\build\intermediates\multi-dex\debug\componentClasses.jar'
+
+-libraryjars 'C:\Dev\Android\sdk\build-tools\23.0.1\lib\shrinkedAndroid.jar'
+
+-forceprocessing
+-dontoptimize
+-dontobfuscate
+-dontusemixedcaseclassnames
+-dontpreverify
+-dontwarn
+-printconfiguration 'D:\kse624-ActivityRecognitionSkelecton-full\w12_ActivityRecognitionSkelecton2015_FULL\app\build\intermediates\multi-dex\debug\components.flags'
+
+
+-keep class android.test.InstrumentationTestRunner {
+    <init>();
+}
+
+-keep class kr.ac.kaist.ic.arSkelecton.MainActivity {
+    <init>();
+}
+
+-keep public class * extends android.app.backup.BackupAgent {
+    <init>();
+}
+
+-keep public class * extends java.lang.annotation.Annotation {
+    <fields>;
+    <methods>;
+}
