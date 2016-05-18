@@ -117,3 +117,7 @@ gradle-app.setting
 
 .DS_Store
 
+.idea/encodings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/scopes/scope_settings.xml
