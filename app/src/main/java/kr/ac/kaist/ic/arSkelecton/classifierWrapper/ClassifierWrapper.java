@@ -1,13 +1,14 @@
 package kr.ac.kaist.ic.arSkelecton.classifierWrapper;
 
+import android.os.Environment;
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 
 import kr.ac.kaist.ic.arSkelecton.Constants;
 import weka.core.Instance;
 import weka.core.Instances;
-import android.os.Environment;
-import android.util.Log;
 
 public abstract class ClassifierWrapper {
 	

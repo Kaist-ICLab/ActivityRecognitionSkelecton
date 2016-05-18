@@ -1,31 +1,7 @@
 package kr.ac.kaist.ic.arSkelecton;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-
-import kr.ac.kaist.ic.activityRecognitionSkelecton.R;
-import kr.ac.kaist.ic.arSkelecton.classifierWrapper.ClassifierWrapper;
-import kr.ac.kaist.ic.arSkelecton.classifierWrapper.J48Wrapper;
-import kr.ac.kaist.ic.arSkelecton.sensorProc.DataInstance;
-import kr.ac.kaist.ic.arSkelecton.sensorProc.DataInstanceList;
-import kr.ac.kaist.ic.arSkelecton.sensorProc.FeatureGenerator;
-import kr.ac.kaist.ic.arSkelecton.sensorProc.SlidingWindow;
-import weka.core.Attribute;
-import weka.core.Instance;
-import weka.core.Instances;
-import weka.core.converters.ArffSaver;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Looper;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
@@ -34,6 +10,11 @@ import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.FileWriter;
+import java.io.IOException;
+
+import kr.ac.kaist.ic.activityRecognitionSkelecton.R;
 
 /**
  * 

@@ -2,13 +2,10 @@ package kr.ac.kaist.ic.arSkelecton;
 
 import android.os.Environment;
 import android.util.Log;
-import android.view.View;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 
 import kr.ac.kaist.ic.arSkelecton.classifierWrapper.ClassifierWrapper;

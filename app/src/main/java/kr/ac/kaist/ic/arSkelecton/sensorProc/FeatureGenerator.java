@@ -8,7 +8,6 @@ import kr.ac.kaist.ic.arSkelecton.Constants;
 import weka.core.Attribute;
 import weka.core.FastVector;
 import weka.core.Instances;
-import android.util.Log;
 
 public class FeatureGenerator {
 	// Mean, Max, Min, Magnitude, Energy, FFT, 

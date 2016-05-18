@@ -9,21 +9,10 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.util.Log;
-import android.view.View;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-
-import kr.ac.kaist.ic.arSkelecton.classifierWrapper.ClassifierWrapper;
 import kr.ac.kaist.ic.arSkelecton.sensorProc.DataInstance;
 import kr.ac.kaist.ic.arSkelecton.sensorProc.DataInstanceList;
-import kr.ac.kaist.ic.arSkelecton.sensorProc.FeatureGenerator;
 import kr.ac.kaist.ic.arSkelecton.sensorProc.SlidingWindow;
-import weka.core.Attribute;
-import weka.core.Instance;
-import weka.core.Instances;
 
 
 /**

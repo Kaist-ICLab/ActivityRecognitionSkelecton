@@ -1,9 +1,7 @@
 package kr.ac.kaist.ic.arSkelecton.classifierWrapper;
 
-import weka.core.Attribute;
-import weka.core.Instance;
-import weka.core.Instances;
 import android.util.Log;
+
 import de.bwaldvogel.liblinear.Feature;
 import de.bwaldvogel.liblinear.FeatureNode;
 import de.bwaldvogel.liblinear.Linear;
@@ -11,6 +9,9 @@ import de.bwaldvogel.liblinear.Model;
 import de.bwaldvogel.liblinear.Parameter;
 import de.bwaldvogel.liblinear.Problem;
 import de.bwaldvogel.liblinear.SolverType;
+import weka.core.Attribute;
+import weka.core.Instance;
+import weka.core.Instances;
 
 public class LibLinearWrapper extends ClassifierWrapper {
 

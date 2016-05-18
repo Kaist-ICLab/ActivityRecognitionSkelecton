@@ -1,6 +1,7 @@
 package kr.ac.kaist.ic.arSkelecton.classifierWrapper;
 
 import android.util.Log;
+
 import weka.classifiers.Classifier;
 import weka.classifiers.trees.J48;
 import weka.core.Instance;
