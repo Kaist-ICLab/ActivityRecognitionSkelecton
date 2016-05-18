@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 14
+    compileSdkVersion 21
     buildToolsVersion "23.0.1"
 
     defaultConfig {
         applicationId "kr.ac.kaist.ic.activityRecognitionSkelecton"
         minSdkVersion 10
-        targetSdkVersion 14
+        targetSdkVersion 21
 
         //testApplicationId "kr.ac.kaist.ic.activityRecognitionSkelecton"
         //testInstrumentationRunner "android.test.InstrumentationTestRunner"

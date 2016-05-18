@@ -268,108 +268,107 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 				DataInstanceList dlAcc, dlGyro;
 
 				while(!Thread.currentThread().isInterrupted()){
-					while(true){ 
-						// Fetching a slices of sliding window
-						dlAcc = slidingWindowAcc.output();
-						dlGyro = slidingWindowGyro.output();	
+					// Fetching a slices of sliding window
+					dlAcc = slidingWindowAcc.output();
+					dlGyro = slidingWindowGyro.output();
 
-						if(dlAcc != null && dlGyro != null){
-							if(dlAcc.getTimeId() == dlGyro.getTimeId()){
-								Log.i(TAG, "Sensors are synced!");
+					if(dlAcc != null && dlGyro != null){
+						if(dlAcc.getTimeId() == dlGyro.getTimeId()){
+							Log.i(TAG, "Sensors are synced!");
 
-								// Calculate features (without class label)
-								HashMap<String, Float> featureMapAcc = 
-										FeatureGenerator.processAcc(dlAcc);
-								HashMap<String, Float> featureMapGyro = 
-										FeatureGenerator.processGyro(dlGyro);
+							// Calculate features (without class label)
+							HashMap<String, Float> featureMapAcc =
+									FeatureGenerator.processAcc(dlAcc);
+							HashMap<String, Float> featureMapGyro =
+									FeatureGenerator.processGyro(dlGyro);
 
-								// Generating header
-								if(instancesForDataCollection == null){
-									String[] featureHeader = Constants.LIST_FEATURES;
-									instancesForDataCollection = 
-											FeatureGenerator.createEmptyInstances(featureHeader, true); // makeClassLabel);
-								}
-
-								// Aggregate features in single Weka instance
-								int attributeSize = featureMapAcc.size() + featureMapAcc.size() + 1;
-								Instance instance = new Instance(attributeSize); // including class classLabel
-
-								// Filling features for accelerometer
-								for(String feature : featureMapAcc.keySet()){
-									float value = featureMapAcc.get(feature);
-									Attribute attr = instancesForDataCollection.attribute(feature);
-									instance.setValue(attr, value);
-								}
-
-								// Filling features for gyroscope
-								for(String feature : featureMapGyro.keySet()){
-									float value = featureMapGyro.get(feature);
-									Attribute attr = instancesForDataCollection.attribute(feature);
-									instance.setValue(attr, value);
-								}
-
-								// Adding class attribute
-								Attribute attrClass = instancesForDataCollection.attribute(Constants.HEADER_CLASS_LABEL);
-								instancesForDataCollection.setClass(attrClass);
-								if(classLabel != null)
-									instance.setValue(attrClass, classLabel); // Only for labeled data when collecting data
-
-								// Add generated Instance
-								instancesForDataCollection.add(instance); // Final calculated feature set
-								Log.i(TAG, "Instance added : " + instancesForDataCollection.numInstances());
-
-								// Classify a instance if classifier is ready by setClassifier()
-								if(classifier != null){
-									try {
-										// Store the result in ArrayList
-										if(classificationResultList == null){
-											classificationResultList = new ArrayList<String>();
-										}
-
-										// Use header information of data collection										
-										instance.setDataset(instancesForDataCollection);
-										//Log.e(TAG, "ClassifierWrapper : " + classifier);
-
-										final String resultClass = classifier.predict(instance);
-
-										classificationResultList.add(/*instance + "," + */resultClass);								
-
-										Log.i(TAG, "Classified as : " + resultClass);
-										runOnUiThread(new Runnable() {
-
-											@Override
-											public void run() {
-												String formattedDate = "";
-												{
-													Calendar cal = Calendar.getInstance();
-													cal.setTimeInMillis(System.currentTimeMillis());
-													SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-													formattedDate = sdf.format(cal.getTime());
-												}
-												String result = formattedDate + " : " + resultClass;
-												tvLog.append(result.toString());
-												tvLog.append("\n");
-												scrollViewForLog.fullScroll(View.FOCUS_DOWN);
-											}
-										});
-									} catch (Exception e) {
-										e.printStackTrace();
-										Log.e(TAG, "Classification error : " + e.getMessage());
-
-										classificationResultList.add("Classification error");								
-									}
-								} 
-
-							} else {
-								Log.e(TAG, "Sample are not synced!"); // Issue : What if not synced (Very rare case) => Ignored
+							// Generating header
+							if(instancesForDataCollection == null){
+								String[] featureHeader = Constants.LIST_FEATURES;
+								instancesForDataCollection =
+										FeatureGenerator.createEmptyInstances(featureHeader, true); // makeClassLabel);
 							}
-						}
 
-						if(dlAcc == null && dlGyro == null){
-							Log.d(TAG, "Thread sleeps for " + Constants.DURATION_THREAD_SLEEP + "ms");
-							Thread.sleep(Constants.DURATION_THREAD_SLEEP);
+							// Aggregate features in single Weka instance
+							int attributeSize = featureMapAcc.size() + featureMapAcc.size() + 1;
+							Instance instance = new Instance(attributeSize); // including class classLabel
+
+							// Filling features for accelerometer
+							for(String feature : featureMapAcc.keySet()){
+								float value = featureMapAcc.get(feature);
+								Attribute attr = instancesForDataCollection.attribute(feature);
+								instance.setValue(attr, value);
+							}
+
+							// Filling features for gyroscope
+							for(String feature : featureMapGyro.keySet()){
+								float value = featureMapGyro.get(feature);
+								Attribute attr = instancesForDataCollection.attribute(feature);
+								instance.setValue(attr, value);
+							}
+
+							// Adding class attribute
+							Attribute attrClass = instancesForDataCollection.attribute(Constants.HEADER_CLASS_LABEL);
+							instancesForDataCollection.setClass(attrClass);
+							if(classLabel != null)
+								instance.setValue(attrClass, classLabel); // Only for labeled data when collecting data
+
+							// Add generated Instance
+							instancesForDataCollection.add(instance); // Final calculated feature set
+							Log.i(TAG, "Instance added : " + instancesForDataCollection.numInstances());
+
+							// Classify a instance if classifier is ready by setClassifier()
+							if(classifier != null){
+								try {
+									// Store the result in ArrayList
+									if(classificationResultList == null){
+										classificationResultList = new ArrayList<String>();
+									}
+
+									// Use header information of data collection
+									instance.setDataset(instancesForDataCollection);
+									//Log.e(TAG, "ClassifierWrapper : " + classifier);
+
+									final String resultClass = classifier.predict(instance);
+
+									classificationResultList.add(/*instance + "," + */resultClass);
+
+									Log.i(TAG, "Classified as : " + resultClass);
+									runOnUiThread(new Runnable() {
+
+										@Override
+										public void run() {
+											String formattedDate = "";
+											{
+												Calendar cal = Calendar.getInstance();
+												cal.setTimeInMillis(System.currentTimeMillis());
+												SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+												formattedDate = sdf.format(cal.getTime());
+											}
+											String result = formattedDate + " : " + resultClass;
+											tvLog.append(result.toString());
+											tvLog.append("\n");
+											scrollViewForLog.fullScroll(View.FOCUS_DOWN);
+										}
+									});
+								} catch (Exception e) {
+									e.printStackTrace();
+									Log.e(TAG, "Classification error : " + e.getMessage());
+
+									classificationResultList.add("Classification error");
+								}
+							}
+
+						} else {
+							Log.e(TAG, "Sample are not synced!"); // Issue : What if not synced (Very rare case) => Ignored
 						}
-					} 
+					}
+
+					if(dlAcc == null && dlGyro == null){
+						Log.d(TAG, "Thread sleeps for " + Constants.DURATION_THREAD_SLEEP + "ms");
+						Thread.sleep(Constants.DURATION_THREAD_SLEEP);
+					}
+
 
 				}
 
