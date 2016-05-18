@@ -114,7 +114,7 @@ public class FeatureGenerator {
 	}
 
 	public static float calculateVariance(DataInstance di){
-		return calculateMin(di.getValues());
+		return calculateVariance(di.getValues());
 	}
 
 	public static HashMap<String, Float> processAcc(DataInstanceList dl) {	
