@@ -4,6 +4,7 @@ import android.os.Environment;
 import android.util.Log;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -154,7 +155,7 @@ public class DataClassifier implements SensorDataHandler.DataAdaptor {
         }
     }
 
-    public void setClassifier(String[] arffFileNames) {
+    public void setClassifier(String[] arffFileNames) throws FileNotFoundException {
         // Load training data
         Instances instancesForTraining = ClassifierWrapper.loadInstancesFromArffFile(arffFileNames[0]);
         for (int i = 1; i < arffFileNames.length; i++) { // From second Instances
@@ -172,6 +173,10 @@ public class DataClassifier implements SensorDataHandler.DataAdaptor {
             classifierTmp.train(instancesForTraining);
             classifier = classifierTmp;
         }
+    }
+
+    public void clearClassifier() {
+        classifier = null;
     }
 
 }

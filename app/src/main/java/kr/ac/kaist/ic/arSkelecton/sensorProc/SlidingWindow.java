@@ -112,7 +112,18 @@ public class SlidingWindow {
 		}
 	}
 
+    public boolean isBufferReady() {
+        return (outputBuffer.size() > windowSize / stepSize);
+    }
 
+    public long getHeadTimeId() {
+        if (outputBuffer.size() == 0) return 0;
+        return outputBuffer.firstElement().getTimeId();
+    }
 
+    public void removeFirst() {
+        if (outputBuffer.size() == 0) return;
+        outputBuffer.remove(0);
+    }
 
 }

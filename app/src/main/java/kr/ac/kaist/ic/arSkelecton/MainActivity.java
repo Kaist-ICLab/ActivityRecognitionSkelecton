@@ -11,6 +11,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -158,7 +159,7 @@ public class MainActivity extends ActionBarActivity {
             Log.i(TAG, "startTestingModel()");
 
             String outputFileName = etOutputFileName.getText().toString();
-            if(outputFileName == null || outputFileName.equals("")){
+            if (outputFileName == null || outputFileName.equals("")) {
                 Toast.makeText(MainActivity.this, "Output file name is required for testing a model", Toast.LENGTH_SHORT).show();
             } else {
                 startModelTest(Constants.ARFF_FILE_NAMES, outputFileName);
@@ -197,8 +198,8 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	public void startDataCollection(String label){
-		highlightButton(btnFinishCollectingData);		
-
+		highlightButton(btnFinishCollectingData);
+        sensorDataClassifier.clearClassifier();
         sensorDataHandler.setClassLabel(label);
         sensorDataHandler.start();
 	}
@@ -206,6 +207,7 @@ public class MainActivity extends ActionBarActivity {
 	public void finishDataCollection(){
 		highlightButton(null);
 
+        sensorDataHandler.stop();
 		// Save raw data
         sensorDataHandler.saveRawDataToCSV();
 
@@ -218,18 +220,24 @@ public class MainActivity extends ActionBarActivity {
 		btnFinishCollectingData.setEnabled(false);
 	}
 
-	public void startModelTest(String[] arffFileNames, String outputFileName){
-		highlightButton(btnFinishTestingModel);
+	public void startModelTest(String[] arffFileNames, String outputFileName) {
+        try {
+            highlightButton(btnFinishTestingModel);
 
-        sensorDataHandler.setClassLabel(null);
-        sensorDataClassifier.setClassifier(arffFileNames);
+            sensorDataHandler.setClassLabel(null);
+            sensorDataClassifier.setClassifier(arffFileNames);
 
-        sensorDataHandler.start();
+            sensorDataHandler.start();
 
-		tvLog.setText("");
+            tvLog.setText("");
+        } catch (FileNotFoundException e) {
+            sensorDataHandler.stop();
+            highlightButton(null);
+            Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
 	}
 
-	public void saveTestResultToFile(String outputFileName, String content){
+	public void saveTestResultToFile(String outputFileName, String content) {
 		// Writing summary if output is set
 		if(outputFileName != null){
 			// Set output file for writing result

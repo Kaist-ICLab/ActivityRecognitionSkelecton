@@ -152,11 +152,22 @@ public class SensorDataHandler {
     public DataAdaptor dataAdaptor;
 
     private void processWindowBuffer() {
+        if (slidingWindowAcc.getHeadTimeId() != slidingWindowGyro.getHeadTimeId()) {
+            if (slidingWindowAcc.getHeadTimeId() < slidingWindowGyro.getHeadTimeId()) {
+                slidingWindowAcc.removeFirst();
+            } else {
+                slidingWindowGyro.removeFirst();
+            }
+        }
+        if (!slidingWindowAcc.isBufferReady() || !slidingWindowGyro.isBufferReady()) return;
+
         // Fetching a slices of sliding window
         DataInstanceList dlAcc = slidingWindowAcc.output();
         DataInstanceList dlGyro = slidingWindowGyro.output();
 
         if (dlAcc == null || dlGyro == null) return;
+
+        Log.i(TAG, dlAcc.getTimeId() + ", " + dlGyro.getTimeId());
 
         if (dlAcc.getTimeId() != dlGyro.getTimeId()) {
             Log.e(TAG, "Sample are not synced!"); // Issue : What if not synced (Very rare case) => Ignored

@@ -4,7 +4,9 @@ import android.os.Environment;
 import android.util.Log;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.File;
 
 import kr.ac.kaist.ic.arSkelecton.Constants;
 import weka.core.Instance;
@@ -23,12 +25,14 @@ public abstract class ClassifierWrapper {
 	
 	public abstract String predict(Instance instance);
 	
-	public static Instances loadInstancesFromArffFile(String fileName){
+	public static Instances loadInstancesFromArffFile(String fileName) throws FileNotFoundException {
 		String dirPath = 
 				Environment.getExternalStorageDirectory() 
 				+ "/" 
 				+ Constants.WORKING_DIR_NAME;
 		String filePath = dirPath + "/" + fileName;
+
+        if (new File(filePath).exists() == false) throw new FileNotFoundException(fileName + " not exists");
 
 		try { 
 			BufferedReader reader =
