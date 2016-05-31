@@ -175,8 +175,10 @@ public class DataClassifier implements SensorDataHandler.DataAdaptor {
         }
     }
 
-    public void clearClassifier() {
+    public void clear() {
         classifier = null;
+        classificationResultList = null;
+        instancesForDataCollection = FeatureGenerator.createEmptyInstances(Constants.LIST_FEATURES, true);
     }
 
 }

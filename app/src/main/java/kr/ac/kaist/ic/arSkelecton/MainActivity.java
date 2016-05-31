@@ -199,7 +199,7 @@ public class MainActivity extends ActionBarActivity {
 
 	public void startDataCollection(String label){
 		highlightButton(btnFinishCollectingData);
-        sensorDataClassifier.clearClassifier();
+        sensorDataClassifier.clear();
         sensorDataHandler.setClassLabel(label);
         sensorDataHandler.start();
 	}
