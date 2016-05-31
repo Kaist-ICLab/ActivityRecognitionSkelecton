@@ -14,6 +14,8 @@ import android.widget.Toast;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import kr.ac.kaist.ic.activityRecognitionSkelecton.R;
 
@@ -99,6 +101,24 @@ public class MainActivity extends ActionBarActivity {
         this.sensorDataClassifier = new DataClassifier();
         this.sensorDataHandler.dataAdaptor = this.sensorDataClassifier;
 
+        this.sensorDataClassifier.eventHandler = new DataClassifier.EventHandler() {
+            @Override
+            public void onClassified(final String resultClass) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Calendar cal = Calendar.getInstance();
+                        cal.setTimeInMillis(System.currentTimeMillis());
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        String formattedDate = sdf.format(cal.getTime());
+                        String result = formattedDate + " : " + resultClass;
+                        tvLog.append(result.toString());
+                        tvLog.append("\n");
+                        scrollViewForLog.fullScroll(View.FOCUS_DOWN);
+                    }
+                });
+            }
+        };
 	}
 
 	@Override

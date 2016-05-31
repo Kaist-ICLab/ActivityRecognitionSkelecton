@@ -91,23 +91,11 @@ public class DataClassifier implements SensorDataHandler.DataAdaptor {
             classificationResultList.add(/*instance + "," + */resultClass);
 
             Log.i(TAG, "Classified as : " + resultClass);
-//            runOnUiThread(new Runnable() {
-//
-//                @Override
-//                public void run() {
-//                    String formattedDate = "";
-//                    {
-//                        Calendar cal = Calendar.getInstance();
-//                        cal.setTimeInMillis(System.currentTimeMillis());
-//                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//                        formattedDate = sdf.format(cal.getTime());
-//                    }
-//                    String result = formattedDate + " : " + resultClass;
-//                    tvLog.append(result.toString());
-//                    tvLog.append("\n");
-//                    scrollViewForLog.fullScroll(View.FOCUS_DOWN);
-//                }
-//            });
+
+            if (eventHandler != null) {
+                eventHandler.onClassified(resultClass);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, "Classification error : " + e.getMessage());
@@ -181,4 +169,8 @@ public class DataClassifier implements SensorDataHandler.DataAdaptor {
         instancesForDataCollection = FeatureGenerator.createEmptyInstances(Constants.LIST_FEATURES, true);
     }
 
+    public interface EventHandler {
+        public void onClassified(String resultClass);
+    }
+    public EventHandler eventHandler;
 }
