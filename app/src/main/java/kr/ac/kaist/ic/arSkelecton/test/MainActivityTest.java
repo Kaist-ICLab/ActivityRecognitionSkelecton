@@ -1,11 +1,11 @@
 package kr.ac.kaist.ic.arSkelecton.test;
 
 import junit.framework.TestCase;
+
 import kr.ac.kaist.ic.arSkelecton.sensorProc.DataInstance;
 import kr.ac.kaist.ic.arSkelecton.sensorProc.DataInstanceList;
 import kr.ac.kaist.ic.arSkelecton.sensorProc.FeatureGenerator;
 import kr.ac.kaist.ic.arSkelecton.sensorProc.SlidingWindow;
-import android.util.Log;
 
 /**
  * 

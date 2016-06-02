@@ -1,13 +1,14 @@
 package kr.ac.kaist.ic.arSkelecton.sensorProc;
 
+import android.os.Environment;
+import android.util.Log;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import kr.ac.kaist.ic.arSkelecton.Constants;
-import android.os.Environment;
-import android.util.Log;
 
 public class DataInstanceList extends ArrayList<DataInstance> {
 

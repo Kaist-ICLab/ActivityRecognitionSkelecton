@@ -1,9 +1,9 @@
 package kr.ac.kaist.ic.arSkelecton.sensorProc;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Vector;
-
-import android.util.Log;
 
 
 /*
@@ -112,7 +112,18 @@ public class SlidingWindow {
 		}
 	}
 
+    public boolean isBufferReady() {
+        return (outputBuffer.size() > windowSize / stepSize);
+    }
 
+    public long getHeadTimeId() {
+        if (outputBuffer.size() == 0) return 0;
+        return outputBuffer.firstElement().getTimeId();
+    }
 
+    public void removeFirst() {
+        if (outputBuffer.size() == 0) return;
+        outputBuffer.remove(0);
+    }
 
 }
